@@ -51,7 +51,7 @@ module.exports = function({databaseId}){
     }
 
     async function getTypeOf(id){
-        return new Promise(function(resolve, reject){
+        return new Promise(function(resolve){
             client.sendCommand('TYPE', [id] , function(err, result){
                 resolve(result)
             })
