@@ -1,0 +1,33 @@
+{
+  "name": "persistent-programming-redis-state",
+  "version": "1.0.0",
+  "description": "Redis state for persistent programming",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha *.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unsegnor/persistent-programming-redis-state.git"
+  },
+  "keywords": [
+    "redis",
+    "persistent",
+    "programming",
+    "state"
+  ],
+  "author": "Víctor Calatayud Asensio",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/unsegnor/persistent-programming-redis-state/issues"
+  },
+  "homepage": "https://github.com/unsegnor/persistent-programming-redis-state#readme",
+  "dependencies": {
+    "persistent-programming": "^1.0.11",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  }
+}
