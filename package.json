@@ -4,7 +4,8 @@
   "description": "Redis state for persistent programming",
   "main": "index.js",
   "scripts": {
-    "test": "mocha *.spec.js"
+    "test": "mocha *.spec.js",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "release-it": "^12.3.2"
   }
 }
