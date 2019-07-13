@@ -1,4 +1,4 @@
-const statePort = require('persistent-programming/domain/StatePort')
+const statePort = require('persistent-programming/domain/State.port')
 const RedisState = require('./RedisState')
 
 describe('RedisState', function(){
