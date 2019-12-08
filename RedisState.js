@@ -9,6 +9,7 @@ module.exports = function({databaseId}){
         load,
         register,
         isRegistered,
+        getProperties,
         quit,
         deleteAll
     })
@@ -21,20 +22,28 @@ module.exports = function({databaseId}){
         redisConnector.quit()
     }
 
-    async function store({id, attribute, value, type}){
-        var setValuePromise = set(getValueIdFor(id, attribute), value)
-        var setTypePromise = set(getTypeIdFor(id, attribute), type)
+    async function store({id, property, value, type}){
+        var setValuePromise = set(getValueIdFor(id, property), value)
+        var setTypePromise = set(getTypeIdFor(id, property), type)
+        var addPropertyPromise = addProperty(id, property)
 
-        await Promise.all([setValuePromise, setTypePromise])
+        await Promise.all([setValuePromise, setTypePromise, addPropertyPromise])
+    }
+
+    async function addProperty(id, property){
+        var propertiesIdentifier = `${id}.PROPERTIES`
+        var properties = (await get(propertiesIdentifier)) || []
+        properties.push(property)
+        return set(propertiesIdentifier, properties)
     }
 
     async function set(id, value){
         return redisConnector.set(id, value)
     }
 
-    async function load({id, attribute}){
-        var getValuePromise = get(getValueIdFor(id, attribute)) 
-        var getTypePromise = get(getTypeIdFor(id, attribute))
+    async function load({id, property}){
+        var getValuePromise = get(getValueIdFor(id, property)) 
+        var getTypePromise = get(getTypeIdFor(id, property))
 
         var value, type
 
@@ -54,12 +63,12 @@ module.exports = function({databaseId}){
         return `${id1.length}${id1}${id2.length}${id2}`
     }
 
-    function getValueIdFor(id, attribute){
-        return `${composeId(id, attribute)}.VALUE`
+    function getValueIdFor(id, property){
+        return `${composeId(id, property)}.VALUE`
     }
 
-    function getTypeIdFor(id, attribute){
-        return `${composeId(id, attribute)}.TYPE`
+    function getTypeIdFor(id, property){
+        return `${composeId(id, property)}.TYPE`
     }
 
     async function register(id){
@@ -69,5 +78,9 @@ module.exports = function({databaseId}){
     async function isRegistered(id){
         var registeredValue = await get(`${id}.REGISTERED`)
         return registeredValue === 'true'
+    }
+
+    async function getProperties({id}){
+        return (await get(`${id}.PROPERTIES`)) || []
     }
 }

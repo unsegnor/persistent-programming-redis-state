@@ -24,12 +24,12 @@
   },
   "homepage": "https://github.com/unsegnor/persistent-programming-redis-state#readme",
   "dependencies": {
-    "persistent-programming": "^2.0.0",
+    "persistent-programming": "^3.0.0",
     "redis": "^2.8.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.1.4",
-    "release-it": "^12.3.3"
+    "mocha": "^6.2.2",
+    "release-it": "^12.4.3"
   }
 }
