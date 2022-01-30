@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/unsegnor/persistent-programming-redis-state#readme",
   "dependencies": {
-    "persistent-programming": "^3.0.0",
+    "persistent-programming": "3",
     "redis": "^3.0.0"
   },
   "devDependencies": {
