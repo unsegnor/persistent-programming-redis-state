@@ -3,7 +3,7 @@ const RedisConnector = require('./RedisConnector')
 const redis = require('redis')
 
 describe('Redis Connector', function(){
-    var client, connector
+    let client, connector
 
     async function deleteAll(){
         return new Promise(function(resolve){
@@ -37,14 +37,14 @@ describe('Redis Connector', function(){
     describe('Set', function(){
         it('must store a value as a list when it is an array', async function(){
             await connector.set('id', ['a', 'b', 'c'])
-            var valueType = await getTypeOf('id')
+            let valueType = await getTypeOf('id')
 
             expect(valueType).to.equal('list')
         })
 
         it('must store a value as a string when it is a string', async function(){
             await connector.set('id', 'a')
-            var valueType = await getTypeOf('id')
+            let valueType = await getTypeOf('id')
 
             expect(valueType).to.equal('string')
         })
@@ -53,7 +53,7 @@ describe('Redis Connector', function(){
     describe('get', function(){
         it('must retrieve the value as an array when it is a list', async function(){
             await connector.set('id', ['a', 'b', 'c'])
-            var value = await connector.get('id')
+            let value = await connector.get('id')
 
             expect(value).to.be.an('array')
             expect(value).to.contain('a')
@@ -63,7 +63,7 @@ describe('Redis Connector', function(){
 
         it('must retrieve the value as a string when it is a string', async function(){
             await connector.set('id', 'a')
-            var value = await connector.get('id')
+            let value = await connector.get('id')
             expect(value).to.equal('a')
         })
 
@@ -71,7 +71,7 @@ describe('Redis Connector', function(){
             await connector.set('id', 'a')
 
             await connector.set('id', ['a', 'b', 'c'])
-            var value = await connector.get('id')
+            let value = await connector.get('id')
 
             expect(value).to.be.an('array')
             expect(value).to.contain('a')
