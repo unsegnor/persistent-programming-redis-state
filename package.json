@@ -2,7 +2,7 @@
   "name": "persistent-programming-redis-state",
   "version": "3.0.17",
   "description": "Redis state for persistent programming",
-  "main": "index.js",
+  "main": "RedisState.js",
   "scripts": {
     "test": "mocha *.spec.js"
   },
