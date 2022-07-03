@@ -10,7 +10,7 @@ module.exports = function({databaseId}){
         register,
         isRegistered,
         getProperties,
-        quit,
+        close,
         deleteAll
     })
 
@@ -18,7 +18,7 @@ module.exports = function({databaseId}){
         return redisConnector.deleteAll()
     }
 
-    async function quit(){
+    async function close(){
         redisConnector.quit()
     }
 

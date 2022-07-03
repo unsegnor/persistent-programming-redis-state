@@ -10,8 +10,9 @@ describe('RedisState', function(){
 
     afterEach(function(){
         this.adapter.deleteAll()
-        this.adapter.quit()
+        this.adapter.close()
     })
 
     statePort()
+
 })
