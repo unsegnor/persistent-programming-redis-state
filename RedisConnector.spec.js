@@ -66,5 +66,17 @@ describe('Redis Connector', function(){
             var value = await connector.get('id')
             expect(value).to.equal('a')
         })
+
+        it('must retrieve the value as a list when it was a string but was overriden by a list', async function(){
+            await connector.set('id', 'a')
+
+            await connector.set('id', ['a', 'b', 'c'])
+            var value = await connector.get('id')
+
+            expect(value).to.be.an('array')
+            expect(value).to.contain('a')
+            expect(value).to.contain('b')
+            expect(value).to.contain('c')
+        })
     })
 })

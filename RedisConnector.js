@@ -23,15 +23,17 @@ module.exports = function({databaseId}){
 
     async function set(id, value){
         return new Promise(function(resolve){
-            if(Array.isArray(value)){
-                client.sendCommand('rpush', [id, ...value], function(){
-                    resolve()
-                })
-            }else{
-                client.set(id, value, function(){
-                    resolve()
-                })
-            }
+            client.sendCommand('del', [id], function(){
+                if(Array.isArray(value)){
+                    client.sendCommand('rpush', [id, ...value], function(){
+                        resolve()
+                    })
+                }else{
+                    client.set(id, value, function(){
+                        resolve()
+                    })
+                }
+            })
         })
     }
 
