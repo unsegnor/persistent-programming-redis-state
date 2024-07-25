@@ -1,6 +1,6 @@
 {
   "name": "persistent-programming-redis-state",
-  "version": "3.0.85",
+  "version": "3.0.86",
   "description": "Redis state for persistent programming",
   "main": "index.js",
   "scripts": {
